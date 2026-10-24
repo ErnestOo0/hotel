@@ -27,7 +27,7 @@ public class RechercheOffreImpl implements RechercheOffre {
     }
 
     @Override
-    public ArrayList<Chambre> recherche(ArgumentsRecherche argsRecherche){
+    public ArrayList<Chambre> recherche(ArgumentsRecherche argsRecherche) throws AgenceInconueException{
         return l.offresDispo(argsRecherche, h);//utiliser fonction logique metier
     }
 }

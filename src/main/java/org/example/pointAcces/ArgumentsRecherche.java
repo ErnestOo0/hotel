@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class ArgumentsRecherche {
+    private String agence;
     private String ville;
     private LocalDate dateArrivee;
     private LocalDate dateDepart;
@@ -13,13 +14,21 @@ public class ArgumentsRecherche {
 
     public ArgumentsRecherche() {}
 
-    public ArgumentsRecherche(String ville, LocalDate dateArrivee, LocalDate dateDepart, int nbPersonnes, int nbEtoiles, long prixMax) {
+    public ArgumentsRecherche(String agence,String ville, LocalDate dateArrivee, LocalDate dateDepart, int nbPersonnes, int nbEtoiles, long prixMax) {
+        this.agence = agence;
         this.ville = ville;
         this.dateArrivee = dateArrivee;
         this.dateDepart = dateDepart;
         this.nbPersonnes = nbPersonnes;
         this.nbEtoiles = nbEtoiles;
         this.prixMax = prixMax;
+    }
+
+    public String getAgence() {
+        return agence;
+    }
+    public void setAgence(String agence) {
+        this.agence = agence;
     }
 
     public String getVille() {

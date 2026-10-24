@@ -22,4 +22,8 @@ public class Hotel {
     public ArrayList<Chambre> getChambres(){
         return chambres;
     }
+
+    public ArrayList<String> getAgencesPartenaires(){
+        return agencesPartenaires;
+    }
 }

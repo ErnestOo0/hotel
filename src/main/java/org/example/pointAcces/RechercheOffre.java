@@ -15,6 +15,6 @@ import java.util.ArrayList;
 public interface RechercheOffre {
     @WebMethod
     @WebResult(name = "listHotels")
-    ArrayList<Chambre> recherche(@WebParam(name="argsRecherche") ArgumentsRecherche argsRecherche);
+    ArrayList<Chambre> recherche(@WebParam(name="argsRecherche") ArgumentsRecherche argsRecherche) throws AgenceInconueException;
 
 }

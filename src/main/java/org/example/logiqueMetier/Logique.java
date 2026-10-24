@@ -3,6 +3,7 @@ package org.example.logiqueMetier;
 import org.example.depot.Chambre;
 import org.example.depot.Hotel;
 import org.example.depot.Reservation;
+import org.example.pointAcces.AgenceInconueException;
 import org.example.pointAcces.ArgumentsRecherche;
 
 import java.time.LocalDate;
@@ -11,7 +12,11 @@ import java.util.ArrayList;
 
 public class Logique {
 
-    public ArrayList<Chambre> offresDispo(ArgumentsRecherche argsRecherche, Hotel h){
+    public ArrayList<Chambre> offresDispo(ArgumentsRecherche argsRecherche, Hotel h) throws AgenceInconueException {
+        if(h.getAgencesPartenaires().contains(argsRecherche.getAgence())){
+            throw new AgenceInconueException("l'agence \""+argsRecherche.getAgence()+"\" n'est pas partenaire");
+        }
+
         ArrayList<Chambre> res = new ArrayList<>();
         if(!bonneVille(argsRecherche, h)){
             return res;
