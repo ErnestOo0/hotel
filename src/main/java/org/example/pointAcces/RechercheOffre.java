@@ -1,17 +1,20 @@
-package org.example;
+package org.example.pointAcces;
 
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebResult;
 import jakarta.jws.WebService;
+import org.example.depot.Chambre;
+
+import java.util.ArrayList;
 
 
 @WebService(
         name = "rechercheHotel", targetNamespace = "http://example.org/"
 )
-public interface RechercheHotel {
+public interface RechercheOffre {
     @WebMethod
     @WebResult(name = "listHotels")
-    ReponseRecherche recherche(@WebParam(name="argsRecherche") ArgumentsRecherche argsRecherche);
+    ArrayList<Chambre> recherche(@WebParam(name="argsRecherche") ArgumentsRecherche argsRecherche);
 
 }

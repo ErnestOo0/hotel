@@ -1,13 +1,17 @@
 package org.example;
 
 import jakarta.xml.ws.Endpoint;
+import org.example.depot.Hotel;
+import org.example.pointAcces.RechercheOffreImpl;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class MainAgence {
+public class MainHotel {
     public static void main(String[] args) {
+
+        Hotel h = new Hotel();
         String adresse = args.length > 0 ? args[0] : "http://localhost:8080/agence";
-        Endpoint.publish(adresse, new RechercheHotelImpl());
+        Endpoint.publish(adresse, new RechercheOffreImpl(h));
         System.out.println("Service publie  : " + adresse);
         System.out.println("Contrat WSDL    : " + adresse + "?wsdl");
         System.out.println("Schema XSD      : " + adresse + "?xsd=1");

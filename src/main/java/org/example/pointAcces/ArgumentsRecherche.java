@@ -1,18 +1,19 @@
-package org.example;
+package org.example.pointAcces;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ArgumentsRecherche {
     private String ville;
-    private Date dateArrivee;
-    private Date dateDepart;
+    private LocalDate dateArrivee;
+    private LocalDate dateDepart;
     private int nbPersonnes;
     private int nbEtoiles;
     private long prixMax;
 
     public ArgumentsRecherche() {}
 
-    public ArgumentsRecherche(String ville, Date dateArrivee, Date dateDepart, int nbPersonnes, int nbEtoiles, long prixMax) {
+    public ArgumentsRecherche(String ville, LocalDate dateArrivee, LocalDate dateDepart, int nbPersonnes, int nbEtoiles, long prixMax) {
         this.ville = ville;
         this.dateArrivee = dateArrivee;
         this.dateDepart = dateDepart;
@@ -28,17 +29,17 @@ public class ArgumentsRecherche {
         this.ville = ville;
     }
 
-    public Date getDateArrivee() {
+    public LocalDate getDateArrivee() {
         return dateArrivee;
     }
-    public void setDateArrivee(Date dateArrivee) {
+    public void setDateArrivee(LocalDate dateArrivee) {
         this.dateArrivee = dateArrivee;
     }
 
-    public Date getDateDepart() {
+    public LocalDate getDateDepart() {
         return dateDepart;
     }
-    public void setDateDepart(Date dateDepart) {
+    public void setDateDepart(LocalDate dateDepart) {
         this.dateDepart = dateDepart;
     }
 
@@ -54,5 +55,12 @@ public class ArgumentsRecherche {
     }
     public void setNbEtoiles(int nbEtoiles) {
         this.nbEtoiles = nbEtoiles;
+    }
+
+    public long getPrixMax() {
+        return prixMax;
+    }
+    public void setPrixMax(long prixMax) {
+        this.prixMax = prixMax;
     }
 }

@@ -34,7 +34,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.5.0</version>
                 <configuration>
-                    <mainClass>org.example.MainAgence</mainClass>
+                    <mainClass>org.example.MainHotel</mainClass>
                 </configuration>
             </plugin>
         </plugins>
