@@ -1,20 +1,19 @@
 package org.example.pointAcces;
 
-import java.time.LocalDate;
-import java.util.Date;
+import org.example.depot.DateDecomposee;
 
 public class ArgumentsRecherche {
     private String agence;
     private String ville;
-    private LocalDate dateArrivee;
-    private LocalDate dateDepart;
+    private DateDecomposee dateArrivee;// peut etre utiliser son propre type pour ne pas dépendre de java et apres convertir
+    private DateDecomposee dateDepart;
     private int nbPersonnes;
     private int nbEtoiles;
     private long prixMax;
 
     public ArgumentsRecherche() {}
 
-    public ArgumentsRecherche(String agence,String ville, LocalDate dateArrivee, LocalDate dateDepart, int nbPersonnes, int nbEtoiles, long prixMax) {
+    public ArgumentsRecherche(String agence, String ville, DateDecomposee dateArrivee, DateDecomposee dateDepart, int nbPersonnes, int nbEtoiles, long prixMax) {
         this.agence = agence;
         this.ville = ville;
         this.dateArrivee = dateArrivee;
@@ -38,17 +37,17 @@ public class ArgumentsRecherche {
         this.ville = ville;
     }
 
-    public LocalDate getDateArrivee() {
+    public DateDecomposee getDateArrivee() {
         return dateArrivee;
     }
-    public void setDateArrivee(LocalDate dateArrivee) {
+    public void setDateArrivee(DateDecomposee dateArrivee) {
         this.dateArrivee = dateArrivee;
     }
 
-    public LocalDate getDateDepart() {
+    public DateDecomposee getDateDepart() {
         return dateDepart;
     }
-    public void setDateDepart(LocalDate dateDepart) {
+    public void setDateDepart(DateDecomposee dateDepart) {
         this.dateDepart = dateDepart;
     }
 

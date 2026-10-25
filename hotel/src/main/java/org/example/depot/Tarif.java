@@ -4,6 +4,8 @@ public class Tarif {
     private String nom;
     private long prix;
 
+    public Tarif() {}
+
     public Tarif(String nom, long prix) {
         this.nom = nom;
         this.prix = prix;

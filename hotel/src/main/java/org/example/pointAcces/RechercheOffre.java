@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 
 @WebService(
-        name = "rechercheHotel", targetNamespace = "http://example.org/"
+        name = "rechercheOffre", targetNamespace = "http://example.org/"
 )
 public interface RechercheOffre {
     @WebMethod

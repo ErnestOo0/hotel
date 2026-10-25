@@ -9,6 +9,8 @@ private int places;
 private Tarif tarif;
 private ArrayList<Reservation> listReservations;
 
+public Chambre() {}
+
 public Chambre(int numero, int places, Tarif tarif){
     this.numero = numero;
     this.places = places;
@@ -19,17 +21,29 @@ public Chambre(int numero, int places, Tarif tarif){
 public int getNumero(){
     return this.numero;
 }
+public void setNumero(int numero){
+    this.numero = numero;
+}
 
 public int getPlaces(){
     return this.places;
+}
+public void setPlaces(int places){
+    this.places = places;
 }
 
 public Tarif getTarif(){
     return this.tarif;
 }
+public void setTarif(Tarif tarif){
+    this.tarif = tarif;
+}
 
 public ArrayList<Reservation> getListReservations(){
     return this.listReservations;
+}
+public void setListReservations(ArrayList<Reservation> listReservations){
+    this.listReservations = listReservations;
 }
 
 //pas sur que ce soit ici
@@ -48,6 +62,4 @@ public void newResa(Reservation datesResa){
     }
 
     }
-
-
 }

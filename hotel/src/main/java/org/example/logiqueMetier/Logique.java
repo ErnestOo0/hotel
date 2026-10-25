@@ -1,6 +1,7 @@
 package org.example.logiqueMetier;
 
 import org.example.depot.Chambre;
+import org.example.depot.DateDecomposee;
 import org.example.depot.Hotel;
 import org.example.depot.Reservation;
 import org.example.pointAcces.AgenceInconueException;
@@ -46,18 +47,18 @@ public class Logique {
     }
 
     private boolean datesDispo(Chambre chambreHotel, ArgumentsRecherche args){
-        LocalDate arrivee = args.getDateArrivee();
-        LocalDate depart = args.getDateDepart();
+        DateDecomposee arrivee = args.getDateArrivee();
+        DateDecomposee depart = args.getDateDepart();
         Reservation r = new Reservation(arrivee, depart);
         return chambreHotel.disponible(r);
     }
 
     private boolean tarifCorrect(Chambre chambreHotel, ArgumentsRecherche args){
-        LocalDate arrivee = args.getDateArrivee();
-        LocalDate depart = args.getDateDepart();
+        DateDecomposee arrivee = args.getDateArrivee();
+        DateDecomposee depart = args.getDateDepart();
         long prixMax = args.getPrixMax();
         //on suppose que le départ est avant l'arrivée
-        long duree = ChronoUnit.DAYS.between(arrivee,depart);
+        long duree = ChronoUnit.DAYS.between(arrivee.toLocalDate(),depart.toLocalDate());
         return duree*chambreHotel.getTarif().getPrix() <= prixMax;
 
     }
