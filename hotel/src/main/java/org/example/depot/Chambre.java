@@ -9,7 +9,9 @@ private int places;
 private Tarif tarif;
 private ArrayList<Reservation> listReservations;
 
-public Chambre() {}
+public Chambre() {
+    listReservations = new ArrayList<>();
+}
 
 public Chambre(int numero, int places, Tarif tarif){
     this.numero = numero;

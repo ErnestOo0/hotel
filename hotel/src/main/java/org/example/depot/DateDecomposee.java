@@ -34,6 +34,6 @@ public class DateDecomposee {
     }
 
     public LocalDate toLocalDate() {
-        return LocalDate.of(jour, mois, annee);
+        return LocalDate.of(annee, mois, jour);
     }
 }

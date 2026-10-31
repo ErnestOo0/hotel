@@ -3,12 +3,14 @@ package org.example.depot;
 public class Tarif {
     private String nom;
     private long prix;
+    private String devise;
 
     public Tarif() {}
 
-    public Tarif(String nom, long prix) {
+    public Tarif(String nom, long prix, String devise) {
         this.nom = nom;
         this.prix = prix;
+        this.devise = devise;
     }
 
     public String getNom() {
@@ -23,5 +25,12 @@ public class Tarif {
     }
     public void setPrix(long prix) {
         this.prix = prix;
+    }
+
+    public String getDevise() {
+        return devise;
+    }
+    public void setDevise(String devise) {
+        this.devise = devise;
     }
 }

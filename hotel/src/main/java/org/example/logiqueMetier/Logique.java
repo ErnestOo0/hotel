@@ -14,15 +14,17 @@ import java.util.ArrayList;
 public class Logique {
 
     public ArrayList<Chambre> offresDispo(ArgumentsRecherche argsRecherche, Hotel h) throws AgenceInconueException {
-        if(h.getAgencesPartenaires().contains(argsRecherche.getAgence())){
+        if(!h.estAgencePartenaire(argsRecherche.getAgence())){
             throw new AgenceInconueException("l'agence \""+argsRecherche.getAgence()+"\" n'est pas partenaire");
         }
 
         ArrayList<Chambre> res = new ArrayList<>();
         if(!bonneVille(argsRecherche, h)){
+            System.out.println("mauvaise ville");
             return res;
         }
         if(!assezEtoiles(argsRecherche, h)){
+            System.out.println("pas assez d'etoiles");
             return res;
         }
         for(Chambre chambreHotel : h.getChambres()){

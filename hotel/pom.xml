@@ -24,11 +24,19 @@
             <artifactId>jaxws-rt</artifactId>
             <version>4.0.5</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>4.0.5</version>
+        </dependency>
     </dependencies>
 
     <build>
+
         <plugins>
-            <!-- mvn exec:java  lance le serveur sans assembler de jar -->
+            <!--
+             mvn exec:java  lance le serveur sans assembler de jar
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -37,7 +45,23 @@
                     <mainClass>org.example.MainHotel</mainClass>
                 </configuration>
             </plugin>
+            -->
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-classpath</argument>
+                        <classpath/>
+                        <argument>org.example.MainHotel</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
         </plugins>
+
     </build>
 
 </project>
