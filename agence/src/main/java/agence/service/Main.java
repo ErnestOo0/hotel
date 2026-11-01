@@ -30,7 +30,7 @@ public class Main {
 
         int ne = 2;
         int np = 1;
-        long pmax = 200;
+        Double pmax = 200;
 
 
         ArgumentsRecherche argrr = new ArgumentsRecherche();
