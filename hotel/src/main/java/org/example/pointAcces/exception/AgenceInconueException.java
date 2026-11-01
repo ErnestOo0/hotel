@@ -1,4 +1,4 @@
-package org.example.pointAcces;
+package org.example.pointAcces.exception;
 
 import jakarta.xml.ws.WebFault;
 

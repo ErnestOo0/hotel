@@ -35,4 +35,8 @@ public class Reservation {
         return false;
     }
 
+    public boolean datesValides(){
+        return dateDepare.isApres(dateArrivee) && !dateArrivee.passee();
+    }
+
 }

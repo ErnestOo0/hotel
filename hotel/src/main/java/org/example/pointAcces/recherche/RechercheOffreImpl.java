@@ -1,13 +1,16 @@
-package org.example.pointAcces;
+package org.example.pointAcces.recherche;
 
 import jakarta.jws.WebService;
 import org.example.depot.Chambre;
 import org.example.depot.Hotel;
 import org.example.logiqueMetier.Logique;
+import org.example.pointAcces.arguments.ArgumentsRecherche;
+import org.example.pointAcces.exception.AgenceInconueException;
 
 import java.util.ArrayList;
 
-@WebService(endpointInterface = "org.example.pointAcces.RechercheOffre",
+@Deprecated
+@WebService(endpointInterface = "org.example.pointAcces.recherche.RechercheOffre",
         serviceName = "RechercheOffreService",
         portName = "RechercheOffreSoapPort",
         targetNamespace = "http://pointAcces.exemple.org/")
@@ -27,7 +30,7 @@ public class RechercheOffreImpl implements RechercheOffre {
     }
 
     @Override
-    public ArrayList<Chambre> recherche(ArgumentsRecherche argsRecherche) throws AgenceInconueException{
+    public ArrayList<Chambre> recherche(ArgumentsRecherche argsRecherche) throws AgenceInconueException {
         return l.offresDispo(argsRecherche, h);//utiliser fonction logique metier
     }
 }

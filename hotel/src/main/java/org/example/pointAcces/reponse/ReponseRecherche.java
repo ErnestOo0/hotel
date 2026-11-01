@@ -1,7 +1,8 @@
-package org.example.pointAcces;
+package org.example.pointAcces.reponse;
 
 import java.util.ArrayList;
 
+@Deprecated
 public class ReponseRecherche {
     ArrayList<String> listOffres;
 

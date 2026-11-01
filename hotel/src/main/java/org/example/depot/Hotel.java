@@ -1,5 +1,7 @@
 package org.example.depot;
 
+import org.example.pointAcces.arguments.Agence;
+
 import java.util.ArrayList;
 
 public class Hotel {
@@ -7,7 +9,7 @@ public class Hotel {
     private String ville;
     private int etoiles;
     private ArrayList<Chambre> chambres;
-    private ArrayList<String> agencesPartenaires;
+    private ArrayList<AgenceSecret> agencesPartenaires;
 
     public Hotel() {
         this.chambres = new ArrayList<>();
@@ -49,17 +51,31 @@ public class Hotel {
         }
     }
 
-    public ArrayList<String> getAgencesPartenaires(){
+    public ArrayList<AgenceSecret> getAgencesPartenaires(){
         return agencesPartenaires;
     }
 
-    public void addAgencesPartenaire(String agence){
+    public void addAgencesPartenaire(AgenceSecret agence){
         if(!agencesPartenaires.contains(agence)){
             agencesPartenaires.add(agence);
         }
     }
 
-    public boolean estAgencePartenaire(String agence){
-        return agencesPartenaires.contains(agence);
+    public boolean estAgencePartenaire(Agence agence){
+        for(AgenceSecret a : agencesPartenaires){
+            if(a.getNomAgence().equals(agence.getNomAgence())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean authentificationAgence(Agence agence){
+        for(AgenceSecret a : agencesPartenaires){
+            if(a.getNomAgence().equals(agence.getNomAgence()) && a.verifSecret(agence.getSecretAgence())){
+                return true;
+            }
+        }
+        return false;
     }
 }

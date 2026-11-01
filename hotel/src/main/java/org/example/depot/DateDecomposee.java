@@ -33,6 +33,10 @@ public class DateDecomposee {
         return this.toLocalDate().isAfter(dd.toLocalDate());
     }
 
+    public boolean passee(){
+        return this.toLocalDate().isBefore(LocalDate.now());
+    }
+
     public LocalDate toLocalDate() {
         return LocalDate.of(annee, mois, jour);
     }

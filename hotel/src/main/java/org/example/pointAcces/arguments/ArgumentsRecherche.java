@@ -1,9 +1,9 @@
-package org.example.pointAcces;
+package org.example.pointAcces.arguments;
 
 import org.example.depot.DateDecomposee;
 
 public class ArgumentsRecherche {
-    private String agence;
+    private Agence agence;
     private String ville;
     private DateDecomposee dateArrivee;// peut etre utiliser son propre type pour ne pas dépendre de java et apres convertir
     private DateDecomposee dateDepart;
@@ -13,7 +13,7 @@ public class ArgumentsRecherche {
 
     public ArgumentsRecherche() {}
 
-    public ArgumentsRecherche(String agence, String ville, DateDecomposee dateArrivee, DateDecomposee dateDepart, int nbPersonnes, int nbEtoiles, long prixMax) {
+    public ArgumentsRecherche(Agence agence, String ville, DateDecomposee dateArrivee, DateDecomposee dateDepart, int nbPersonnes, int nbEtoiles, long prixMax) {
         this.agence = agence;
         this.ville = ville;
         this.dateArrivee = dateArrivee;
@@ -23,10 +23,10 @@ public class ArgumentsRecherche {
         this.prixMax = prixMax;
     }
 
-    public String getAgence() {
+    public Agence getAgence() {
         return agence;
     }
-    public void setAgence(String agence) {
+    public void setAgence(Agence agence) {
         this.agence = agence;
     }
 
