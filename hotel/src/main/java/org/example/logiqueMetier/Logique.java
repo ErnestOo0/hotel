@@ -1,9 +1,6 @@
 package org.example.logiqueMetier;
 
-import org.example.depot.Chambre;
-import org.example.depot.DateDecomposee;
-import org.example.depot.Hotel;
-import org.example.depot.Reservation;
+import org.example.depot.*;
 import org.example.pointAcces.arguments.ArgumentsReservation;
 import org.example.pointAcces.arguments.Expiration;
 import org.example.pointAcces.arguments.InfoBancaires;
@@ -85,9 +82,18 @@ public class Logique {
         }
         if(!infoBancairesValides(argsReserve.getInfoBancaires())){
             //modifier l'erreur
-            throw new AgenceInconueException("Info bancaires invalides");
+            throw new AgenceInconueException("Info bancaire res invalides");
         }
-
+        //verifier existant
+        if(!chambreValide(argsReserve, h)){
+            throw new AgenceInconueException("Chambre inconue");
+        }
+        //effectuer reservation, la verification de la validité se fait ici
+        if(!reserverChambre(argsReserve, h)){
+            throw new AgenceInconueException("Chambre deja reservée");
+        }
+        //renvoyer reference
+        makeRefResa(argsReserve);
         return "";
     }
 
@@ -108,4 +114,37 @@ public class Logique {
         }
         return true;
     }
+
+    private boolean chambreValide(ArgumentsReservation argsReserve, Hotel h){
+        Offre offreClient = argsReserve.getOffre();
+        if(!h.getNom().equals(offreClient.getNomHotel())){
+            System.out.println("mauvais hotel");
+            return false;
+        }
+        Chambre c = h.getChambreByNom(offreClient.getNomChambre());
+        if(c==null){
+            System.out.println("chambre non valide");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean reserverChambre(ArgumentsReservation argsReserve, Hotel h){
+        Offre offreClient = argsReserve.getOffre();
+        Voyageur v = argsReserve.getVoyageur();
+        Chambre c =h.getChambreByNom(offreClient.getNomChambre());
+        Reservation r = new Reservation(v, offreClient.getDateArrivee(), offreClient.getDateRetour());
+        return c.newResa(r);
+    }
+
+    public String makeRefResa(ArgumentsReservation argsReserve){
+        String res = "";
+        res += argsReserve.getAgence().getNomAgence();
+        res += argsReserve.getVoyageur().getNomVoyageur();
+        res += argsReserve.getOffre().toString();
+
+        return res;
+    }
 }
+
+

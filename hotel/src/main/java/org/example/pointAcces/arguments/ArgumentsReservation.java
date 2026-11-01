@@ -1,8 +1,11 @@
 package org.example.pointAcces.arguments;
 
+import org.example.depot.Offre;
+import org.example.depot.Voyageur;
+
 public class ArgumentsReservation {
     private Agence agence;
-    private String idOffre;
+    private Offre offre;
     private Voyageur voyageur;
     private InfoBancaires infoBancaires;
 
@@ -15,11 +18,11 @@ public class ArgumentsReservation {
         this.agence = agence;
     }
 
-    public String getIdOffre() {
-        return idOffre;
+    public Offre getOffre() {
+        return offre;
     }
-    public void setIdOffre(String idOffre) {
-        this.idOffre = idOffre;
+    public void setOffre(Offre offre) {
+        this.offre = offre;
     }
 
     public Voyageur getVoyageur() {

@@ -40,4 +40,8 @@ public class DateDecomposee {
     public LocalDate toLocalDate() {
         return LocalDate.of(annee, mois, jour);
     }
+
+    public String toString() {
+        return annee+"."+mois+"."+jour;
+    }
 }

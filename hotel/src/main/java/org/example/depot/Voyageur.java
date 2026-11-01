@@ -1,4 +1,4 @@
-package org.example.pointAcces.arguments;
+package org.example.depot;
 
 public class Voyageur {
     private String nomVoyageur;

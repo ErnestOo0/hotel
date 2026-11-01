@@ -3,6 +3,7 @@ package org.example.depot;
 import org.example.pointAcces.arguments.Agence;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Hotel {
     private String nom;
@@ -24,6 +25,10 @@ public class Hotel {
         this.agencesPartenaires = new ArrayList<>();
     }
 
+    public String getNom() {
+        return nom;
+    }
+
     public String getVille(){
         return ville;
     }
@@ -36,9 +41,9 @@ public class Hotel {
         return chambres;
     }
 
-    private boolean numeroLibre(Chambre chambre){
+    private boolean nomLibre(Chambre chambre){
         for(Chambre c : chambres){
-            if(c.getNumero() == chambre.getNumero()){
+            if(Objects.equals(c.getNom(), chambre.getNom())){
                 return false;
             }
         }
@@ -46,9 +51,19 @@ public class Hotel {
     }
 
     public void addChambre(Chambre chambre){
-        if(numeroLibre(chambre)){
+        if(nomLibre(chambre)){
             chambres.add(chambre);
         }
+    }
+
+    public Chambre getChambreByNom(String nom){
+        for(Chambre c : chambres){
+            if(Objects.equals(c.getNom(), nom)){
+                return c;
+            }
+        }
+        System.out.println("Aucunne chambre n'a le numero "+nom);
+        return null;
     }
 
     public ArrayList<AgenceSecret> getAgencesPartenaires(){
