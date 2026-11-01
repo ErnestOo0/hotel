@@ -12,6 +12,7 @@
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <agence.hotels>http://localhost:8081/hotel?wsdl http://localhost:8080/hotel?wsdl</agence.hotels>
     </properties>
 
     <dependencies>
@@ -29,6 +30,7 @@
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>com.sun.xml.ws</groupId>
                 <artifactId>jaxws-maven-plugin</artifactId>
@@ -72,6 +74,7 @@
                         <argument>-classpath</argument>
                         <classpath/>
                         <argument>agence.service.Main</argument>
+                        <argument>${agence.hotels}</argument>
                     </arguments>
                 </configuration>
             </plugin>

@@ -11,7 +11,7 @@ public class Main {
         String secret = "12345";
         agence.setSecretAgence(secret);
 
-        AnnuaireHotels annuaire = args.length > 0 ? new AnnuaireHotels(List.of(args)) : new AnnuaireHotels();
+        AnnuaireHotels annuaire =  new AnnuaireHotels(List.of(args[0].split(" ")));
 
         new Cli(annuaire, agence).lancer();
     }
