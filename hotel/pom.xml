@@ -12,6 +12,11 @@
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <hotel.port>8080</hotel.port>
+        <hotel.nom>hotel du parc</hotel.nom>
+        <hotel.ville>Montpellier</hotel.ville>
+
     </properties>
 
     <dependencies>
@@ -57,6 +62,9 @@
                         <argument>-classpath</argument>
                         <classpath/>
                         <argument>org.example.MainHotel</argument>
+                        <argument>${hotel.port}</argument>
+                        <argument>${hotel.nom}</argument>
+                        <argument>${hotel.ville}</argument>
                     </arguments>
                 </configuration>
             </plugin>

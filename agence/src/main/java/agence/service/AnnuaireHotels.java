@@ -62,11 +62,11 @@ public class AnnuaireHotels {
     }
 
     public Confirmation reserverOffre(ArgumentsReservation argrr){
-        Confirmation offres = new Confirmation();
+        Confirmation conf = new Confirmation();
         try {
             HotelPort port = port(argrr.getAdresseHotel());
-            port.reserverOffre(argrr);
-            // port.recherche(...) puis agrégation
+            conf = port.reserverOffre(argrr);
+
         } catch (WebServiceException | MalformedURLException e) {
             System.out.println("Hôtel ignoré : " + argrr.getAdresseHotel() + " (" + e.getMessage() + ")");
         } catch (ErreurParametreReservationExeption_Exception e) {
@@ -74,6 +74,6 @@ public class AnnuaireHotels {
 
         }
 
-        return offres;
+        return conf;
     }
 }

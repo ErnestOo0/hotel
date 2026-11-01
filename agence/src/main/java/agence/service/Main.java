@@ -5,6 +5,7 @@ import jakarta.xml.ws.WebServiceException;
 
 import java.net.MalformedURLException;
 import java.util.List;
+import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) {
@@ -105,7 +106,7 @@ public class Main {
 
             ArgumentsReservation argumentsReservation = new ArgumentsReservation();
             argumentsReservation.setAgence(a);
-            argumentsReservation.setIdDemande(String.valueOf(choix));
+            argumentsReservation.setIdDemande(UUID.randomUUID().toString());
             argumentsReservation.setInfoBancaires(infoBancairesClient);
             argumentsReservation.setOffre(offreChoisie);
             argumentsReservation.setVoyageur(voyageur);

@@ -12,7 +12,8 @@ import org.example.pointAcces.HotelPortImpl;
 public class MainHotel {
     public static void main(String[] args) {
 
-        String adresse = args.length > 0 ? args[0] : "http://localhost:8080/hotel";
+        int port = Integer.parseInt(args[0]);
+        String adresse = "http://localhost:"+port+"/hotel";
 
         AgenceSecret a1 = new AgenceSecret();
         String noma1 = "Agence_Ernest-xXx-Maxime_Agence";
@@ -20,8 +21,8 @@ public class MainHotel {
         a1.setNomAgence(noma1);
         a1.setSecretAgence(secret);
 
-        String nh = "hotel du parc";
-        String vh = "Montpellier";
+        String nh = args[1];
+        String vh = args[2];
         int neh = 3;
         Hotel h = new Hotel(nh,vh,neh, adresse);
         h.addAgencesPartenaire(a1);

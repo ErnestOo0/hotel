@@ -61,4 +61,11 @@ public class Offre {
     public void setPrix(long prix) {
         this.prix = prix;
     }
+    public String getAdresseHotel() {
+        return adresseHotel;
+    }
+
+    public void setAdresseHotel(String adresseHotel) {
+        this.adresseHotel = adresseHotel;
+    }
 }
