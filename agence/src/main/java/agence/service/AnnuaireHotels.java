@@ -1,14 +1,17 @@
 package agence.service;
 
 import agence.client.hotel.*;
+import agence.service.exception.HotelInjoignableException;
+import jakarta.xml.ws.BindingProvider;
 import jakarta.xml.ws.WebServiceException;
+import jakarta.xml.ws.soap.SOAPFaultException;
 
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.*;
 
 public class AnnuaireHotels {
 
@@ -42,40 +45,104 @@ public class AnnuaireHotels {
     }
 
     private static HotelPort connecter(String urlWsdl) throws MalformedURLException {
-        return new HotelService(URI.create(urlWsdl).toURL()).getHotelSoapPort();
+        HotelPort port =  new HotelService(URI.create(urlWsdl).toURL()).getHotelSoapPort();
+        //Delais
+        Map<String, Object> ctx = ((BindingProvider) port).getRequestContext();
+        ctx.put("jakarta.xml.ws.client.connectionTimeout", 2_000);
+        ctx.put("jakarta.xml.ws.client.receiveTimeout", 5_000);
+        return port;
     }
 
-    public List<Offre> rechercheOffre(ArgumentsRecherche argrr){
-        List<Offre> offres = new ArrayList<>();
-        for (String wsdl : hotels()) {
-            try {
-                HotelPort port = port(wsdl);
-                offres.addAll(port.rechercheOffre(argrr));
-
-            } catch (WebServiceException | MalformedURLException e) {
-                //System.out.println("Hôtel ignoré : " + wsdl + " (" + e.getMessage() + ")");
-                System.out.println(wsdl +" injoignable");
-            } catch (AgenceInconueException_Exception e) {
-                System.out.println("Erreur " + e.getMessage());
-            }
-        }
-        return offres;
-    }
-
-    public Confirmation reserverOffre(ArgumentsReservation argrr){
-        Confirmation conf = new Confirmation();
+    public List<Offre> rechercheOffre(ArgumentsRecherche argrr) {
+        ExecutorService pool = Executors.newFixedThreadPool(8);
         try {
-            HotelPort port = port(argrr.getAdresseHotel());
-            conf = port.reserverOffre(argrr);
+            List<CompletableFuture<List<Offre>>> taches = hotels().stream()
+                    .map(wsdl -> CompletableFuture
+                            .supplyAsync(() -> interroger(wsdl, argrr), pool)
+                            .completeOnTimeout(List.of(), 8, TimeUnit.SECONDS)
+                            .exceptionally(e -> {
+                                System.out.println(wsdl + " injoignable");
+                                return List.of();
+                            }))
+                    .toList();
 
-        } catch (WebServiceException | MalformedURLException e) {
-            //System.out.println("Hôtel ignoré : " + argrr.getAdresseHotel() + " (" + e.getMessage() + ")");
-            System.out.println(argrr.getAdresseHotel() +" ne répond plus");
-        } catch (ErreurParametreReservationExeption_Exception e) {
-            System.out.println("Erreur reservation: " + e + " : Veuillez essayer une autre offre.");
-
+            List<Offre> offres = new ArrayList<>();
+            for (CompletableFuture<List<Offre>> t : taches) {
+                offres.addAll(t.join());
+            }
+            return offres;
+        } finally {
+            pool.shutdownNow();
         }
+    }
 
-        return conf;
+    private List<Offre> interroger(String wsdl, ArgumentsRecherche argrr) {
+        try {
+            return port(wsdl).rechercheOffre(argrr);
+        } catch (AgenceInconueException_Exception e) {
+            System.out.println(wsdl + " : refus (" + e.getMessage() + ")");
+            return List.of();
+        } catch (MalformedURLException e) {
+            throw new WebServiceException("URL invalide : " + wsdl, e);
+        }
+    }
+
+    private static final int MAX_ESSAIS = 3;
+
+
+    public Confirmation reserverOffre(ArgumentsReservation argrr) {
+        Confirmation c = new Confirmation();
+        try {
+            c = reservation(argrr);
+            System.out.println(c.isDejaReserve()
+                    ? "Réservation déjà enregistrée : " + c.getRefReservation()
+                    : "Réservation créée : " + c.getRefReservation());
+
+        } catch (ErreurParametreReservationExeption_Exception e) {
+            // refus de l'hôtel : réponse fiable, la demande n'a pas été enregistrée
+            System.out.println("Réservation refusée : " + e.getMessage()
+                    + " [" + e + "]");
+
+        } catch (HotelInjoignableException e) {
+            // panne : on ne sait pas si c'est enregistré
+            System.out.println(e.getMessage() + ". Relancez la même demande pour vérifier.");
+        }
+        return c;
+    }
+    public Confirmation reservation(ArgumentsReservation argrr)
+            throws ErreurParametreReservationExeption_Exception, HotelInjoignableException {
+
+        String hotel = argrr.getAdresseHotel();
+        WebServiceException derniere = null;
+
+
+        for (int essai = 1; essai <= MAX_ESSAIS; essai++) {
+            try {
+                // même argrr, donc même demandeId à chaque essai
+                return port(hotel).reserverOffre(argrr);
+
+            } catch (SOAPFaultException e) {
+                // le serveur a répondu par une erreur interne : inutile de rejouer
+                throw new HotelInjoignableException(hotel, e);
+
+            } catch (WebServiceException e) {
+                // réseau coupé, délai dépassé : on rejoue la même demande
+                derniere = e;
+                pause(500L * essai);
+
+            } catch (MalformedURLException e) {
+                throw new IllegalArgumentException("Adresse d'hôtel invalide : " + hotel, e);
+            }
+            // les fautes métier (ErreurParametre...) ne sont PAS attrapées ici : elles remontent
+        }
+        throw new HotelInjoignableException(hotel, derniere);
+    }
+
+    private static void pause(long ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+        }
     }
 }

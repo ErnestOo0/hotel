@@ -70,7 +70,7 @@ public class Logique {
 
     private boolean tarifCorrect(Chambre chambreHotel, ArgumentsRecherche args){
 
-        long prixMax = args.getPrixMax();
+        double prixMax = args.getPrixMax();
         //on suppose que le départ est avant l'arrivée
         return prixSejour(chambreHotel, args) <= prixMax;
     }

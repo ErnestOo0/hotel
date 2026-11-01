@@ -1,6 +1,7 @@
 package agence.service;
 
 import agence.client.hotel.*;
+import agence.service.exception.HotelInjoignableException;
 import jakarta.xml.ws.WebServiceException;
 
 import java.net.MalformedURLException;
@@ -8,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws HotelInjoignableException, ErreurParametreReservationExeption_Exception {
         String nomAgence = "Agence_Ernest-xXx-Maxime_Agence";
         Agence a = new Agence();
         a.setNomAgence(nomAgence);
@@ -30,7 +31,7 @@ public class Main {
 
         int ne = 2;
         int np = 1;
-        Double pmax = 200;
+        double pmax = 200;
 
 
         ArgumentsRecherche argrr = new ArgumentsRecherche();

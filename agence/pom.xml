@@ -51,13 +51,28 @@
                 </executions>
             </plugin>
 
-
+<!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.5.0</version>
                 <configuration>
                     <mainClass>agence.service.Main</mainClass>
+                </configuration>
+            </plugin>
+            -->
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-classpath</argument>
+                        <classpath/>
+                        <argument>agence.service.Main</argument>
+                    </arguments>
                 </configuration>
             </plugin>
         </plugins>

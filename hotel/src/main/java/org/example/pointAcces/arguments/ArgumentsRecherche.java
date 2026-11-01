@@ -9,7 +9,7 @@ public class ArgumentsRecherche {
     private DateDecomposee dateDepart;
     private int nbPersonnes;
     private int nbEtoiles;
-    private long prixMax;
+    private double prixMax;
 
     public ArgumentsRecherche() {}
 
@@ -65,10 +65,10 @@ public class ArgumentsRecherche {
         this.nbEtoiles = nbEtoiles;
     }
 
-    public long getPrixMax() {
+    public double getPrixMax() {
         return prixMax;
     }
-    public void setPrixMax(long prixMax) {
+    public void setPrixMax(double prixMax) {
         this.prixMax = prixMax;
     }
 }
