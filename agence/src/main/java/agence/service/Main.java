@@ -121,11 +121,17 @@ public class Main {
                 argumentsReservation2.setOffre(offreChoisie);
                 argumentsReservation2.setVoyageur(voyageur);
 
-                Confirmation reponse2 = port.reserverOffre(argumentsReservation2);
-                System.out.println("Id-demande : " + reponse2.getIdDemande());
-                System.out.println("Id-reservation : " + reponse2.getRefReservation());
+                try{
+                    Confirmation reponse2 = port.reserverOffre(argumentsReservation2);
+                    System.out.println("Id-demande : " + reponse2.getIdDemande());
+                    System.out.println("Id-reservation : " + reponse2.getRefReservation());
+                }catch (ErreurParametreReservationExeption_Exception e) {
+                    System.out.println("Erreur reservation: " + e + "Veuillez essayer une autre offre.");
+
+                }
 
                 try {
+
                     Confirmation reponse = port.reserverOffre(argumentsReservation);
 
                     if (reponse.isDejaReserve()) {
@@ -139,7 +145,7 @@ public class Main {
                     }
                     break;
 
-                } catch (AgenceInconueException_Exception e) {
+                } catch (ErreurParametreReservationExeption_Exception e) {
                     System.out.println("Erreur reservation: " + e + "Veuillez essayer une autre offre.");
 
                 }
