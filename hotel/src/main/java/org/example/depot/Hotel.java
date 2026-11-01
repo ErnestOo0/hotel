@@ -13,6 +13,7 @@ public class Hotel {
     private ArrayList<Chambre> chambres;
     private ArrayList<AgenceSecret> agencesPartenaires;
     private HashMap<String, String> reservations;
+    private String adresseHotel;
 
     public Hotel() {
         this.chambres = new ArrayList<>();
@@ -20,13 +21,14 @@ public class Hotel {
         this.reservations = new HashMap<>();
     }
 
-    public Hotel(String nom, String ville, int etoiles) {
+    public Hotel(String nom, String ville, int etoiles, String adresseHotel) {
         this.nom = nom;
         this.ville = ville;
         this.etoiles = etoiles;
         this.chambres = new ArrayList<>();
         this.agencesPartenaires = new ArrayList<>();
         this.reservations = new HashMap<>();
+        this.adresseHotel = adresseHotel;
     }
 
     public String getNom() {
@@ -109,5 +111,13 @@ public class Hotel {
 
     public boolean dejaDemande(String idDemande){
         return reservations.get(idDemande) != null;
+    }
+
+    public String getAdresseHotel(){
+        return adresseHotel;
+    }
+
+    public void setAdresseHotel(String adresse){
+        this.adresseHotel = adresseHotel;
     }
 }

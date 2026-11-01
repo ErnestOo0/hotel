@@ -6,15 +6,17 @@ public class Offre {
     private DateDecomposee dateArrivee;
     private DateDecomposee dateRetour;
     private long prix;
+    private String adresseHotel;
 
     public Offre() {}
 
-    public Offre(String nomHotel, String nomChambre, DateDecomposee dateArrivee, DateDecomposee dateRetour, long prix) {
+    public Offre(String nomHotel, String nomChambre, DateDecomposee dateArrivee, DateDecomposee dateRetour, long prix, String adresseHotel) {
         this.nomHotel = nomHotel;
         this.nomChambre = nomChambre;
         this.dateArrivee = dateArrivee;
         this.dateRetour = dateRetour;
         this.prix = prix;
+        this.adresseHotel = adresseHotel;
     }
 
     public String getNomHotel() {

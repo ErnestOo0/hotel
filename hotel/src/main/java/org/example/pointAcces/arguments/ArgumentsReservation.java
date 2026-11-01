@@ -9,6 +9,7 @@ public class ArgumentsReservation {
     private Offre offre;
     private Voyageur voyageur;
     private InfoBancaires infoBancaires;
+    private String adresseHotel;
 
     public ArgumentsReservation() {}
 
@@ -46,4 +47,7 @@ public class ArgumentsReservation {
     public void setInfoBancaires(InfoBancaires infoBancaires) {
         this.infoBancaires = infoBancaires;
     }
+
+    public String getAdresseHotel(){ return adresseHotel;}
+    public void setAdresseHotel(String adresse){this.adresseHotel=adresse;}
 }
