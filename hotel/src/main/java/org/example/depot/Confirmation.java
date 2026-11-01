@@ -3,20 +3,20 @@ package org.example.depot;
 public class Confirmation {
     private String refReservation;
     private String idDemande;
-    private boolean dejaReserver;
+    private boolean dejaReserve;
 
     public Confirmation() {}
     public Confirmation(String idDemande){
         this.idDemande = idDemande;
-        dejaReserver = false;
+        dejaReserve = false;
     }
 
-    public boolean isDejaReserver() {
-        return dejaReserver;
+    public boolean isDejaReserve() {
+        return dejaReserve;
     }
 
-    public void setDejaReserver(boolean dejaReserver) {
-        this.dejaReserver = dejaReserver;
+    public void setDejaReserve(boolean dejaReserve) {
+        this.dejaReserve = dejaReserve;
     }
 
     public String getIdDemande() {

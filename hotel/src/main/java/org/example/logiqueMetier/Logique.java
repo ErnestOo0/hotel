@@ -85,7 +85,7 @@ public class Logique {
         Confirmation res = new Confirmation(argsReserve.getIdDemande());
         String refResa = h.getReservationByIdDemande(argsReserve.getIdDemande());
         if(refResa != null){
-            res.setDejaReserver(true);
+            res.setDejaReserve(true);
             res.setRefReservation(refResa);
             return res;
         }
