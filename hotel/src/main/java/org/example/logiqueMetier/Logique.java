@@ -33,7 +33,7 @@ public class Logique {
         for(Chambre chambreHotel : h.getChambres()){
             if(datesDispo(chambreHotel, argsRecherche)
                     && tarifCorrect(chambreHotel,argsRecherche)){
-                Offre newO = new Offre(h.getNom(), chambreHotel.getNom(), argsRecherche.getDateArrivee(), argsRecherche.getDateDepart());
+                Offre newO = new Offre(h.getNom(), chambreHotel.getNom(), argsRecherche.getDateArrivee(), argsRecherche.getDateDepart(), prixSejour(chambreHotel, argsRecherche));
                 res.add(newO);
             }
         }
@@ -67,12 +67,17 @@ public class Logique {
     }
 
     private boolean tarifCorrect(Chambre chambreHotel, ArgumentsRecherche args){
-        DateDecomposee arrivee = args.getDateArrivee();
-        DateDecomposee depart = args.getDateDepart();
+
         long prixMax = args.getPrixMax();
         //on suppose que le départ est avant l'arrivée
+        return prixSejour(chambreHotel, args) <= prixMax;
+    }
+
+    private long prixSejour(Chambre chambreHotel, ArgumentsRecherche args){
+        DateDecomposee arrivee = args.getDateArrivee();
+        DateDecomposee depart = args.getDateDepart();
         long duree = ChronoUnit.DAYS.between(arrivee.toLocalDate(),depart.toLocalDate());
-        return duree*chambreHotel.getTarif().getPrix() <= prixMax;
+        return duree*chambreHotel.getTarif().getPrix();
     }
 
     public String reserver(ArgumentsReservation argsReserve, Hotel h)  throws AgenceInconueException {
