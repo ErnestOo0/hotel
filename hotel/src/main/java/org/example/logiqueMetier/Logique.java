@@ -34,8 +34,8 @@ public class Logique {
         }
         for(Chambre chambreHotel : h.getChambres()){
             if(datesDispo(chambreHotel, argsRecherche)
-                    && tarifCorrect(chambreHotel,argsRecherche)){
-                Offre newO = new Offre(h.getNom(), chambreHotel.getNom(), argsRecherche.getDateArrivee(), argsRecherche.getDateDepart(), prixSejour(chambreHotel, argsRecherche), h.getAdresseHotel());
+                    && tarifCorrect(chambreHotel,argsRecherche, h)){
+                Offre newO = new Offre(h.getNom(), chambreHotel.getNom(), argsRecherche.getDateArrivee(), argsRecherche.getDateDepart(), prixSejour(chambreHotel, argsRecherche, h), h.getAdresseHotel());
                 res.add(newO);
             }
         }
@@ -68,17 +68,17 @@ public class Logique {
         return chambreHotel.disponible(r);
     }
 
-    private boolean tarifCorrect(Chambre chambreHotel, ArgumentsRecherche args){
+    private boolean tarifCorrect(Chambre chambreHotel, ArgumentsRecherche args, Hotel h){
 
         double prixMax = args.getPrixMax();
         //on suppose que le départ est avant l'arrivée
-        return prixSejour(chambreHotel, args) <= prixMax;
+        return prixSejour(chambreHotel, args, h) <= prixMax;
     }
 
-    private double prixSejour(Chambre chambreHotel, ArgumentsRecherche args){
+    private double prixSejour(Chambre chambreHotel, ArgumentsRecherche args, Hotel h){
         DateDecomposee arrivee = args.getDateArrivee();
         DateDecomposee depart = args.getDateDepart();
-        double coefTarif = args.getAgence().getCoefTarif();
+        double coefTarif = h.tarifAgence(args.getAgence());
         long duree = ChronoUnit.DAYS.between(arrivee.toLocalDate(),depart.toLocalDate());
         return duree*chambreHotel.getTarif().getPrix()*coefTarif;
     }

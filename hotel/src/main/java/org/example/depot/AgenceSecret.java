@@ -7,7 +7,9 @@ public class AgenceSecret {
     private SecretHasher.Empreinte secretAgence;
     private double coefTarif;
 
-    public AgenceSecret(){}
+    public AgenceSecret(){
+        coefTarif = 1;
+    }
 
     public String getNomAgence() {
         return nomAgence;
@@ -24,6 +26,9 @@ public class AgenceSecret {
     }
     public void setSecretAgence(String secretAgence) {
         this.secretAgence = SecretHasher.deriver(secretAgence.toCharArray());
+    }
+    public SecretHasher.Empreinte getSecretAgence() {
+        return secretAgence;
     }
 
     public double getCoefTarif() {

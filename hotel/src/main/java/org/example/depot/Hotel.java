@@ -1,5 +1,6 @@
 package org.example.depot;
 
+import org.example.logiqueMetier.SecretHasher;
 import org.example.pointAcces.arguments.Agence;
 
 import java.util.ArrayList;
@@ -119,5 +120,22 @@ public class Hotel {
 
     public void setAdresseHotel(String adresse){
         this.adresseHotel = adresseHotel;
+    }
+
+    public Double tarifAgence(Agence agence){
+        AgenceSecret a = getAgenceSecretByAgence(agence);
+        if(a == null){
+            return null;
+        }
+        return a.getCoefTarif();
+    }
+
+    public AgenceSecret getAgenceSecretByAgence(Agence agence){
+        for(AgenceSecret a : agencesPartenaires){
+            if(a.getNomAgence().equals(agence.getNomAgence())){
+                return a;
+            }
+        }
+        return null;
     }
 }
