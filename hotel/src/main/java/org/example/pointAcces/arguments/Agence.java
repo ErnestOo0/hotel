@@ -5,7 +5,9 @@ public class Agence {
     private String secretAgence;
     private double coefTarif;
 
-    public Agence(){}
+    public Agence(){
+        coefTarif = 1.0;
+    }
 
     public String getNomAgence() {
         return nomAgence;
