@@ -53,7 +53,8 @@ public class AnnuaireHotels {
                 offres.addAll(port.rechercheOffre(argrr));
 
             } catch (WebServiceException | MalformedURLException e) {
-                System.out.println("Hôtel ignoré : " + wsdl + " (" + e.getMessage() + ")");
+                //System.out.println("Hôtel ignoré : " + wsdl + " (" + e.getMessage() + ")");
+                System.out.println(wsdl +" injoignable");
             } catch (AgenceInconueException_Exception e) {
                 System.out.println("Erreur " + e.getMessage());
             }
@@ -68,7 +69,8 @@ public class AnnuaireHotels {
             conf = port.reserverOffre(argrr);
 
         } catch (WebServiceException | MalformedURLException e) {
-            System.out.println("Hôtel ignoré : " + argrr.getAdresseHotel() + " (" + e.getMessage() + ")");
+            //System.out.println("Hôtel ignoré : " + argrr.getAdresseHotel() + " (" + e.getMessage() + ")");
+            System.out.println(argrr.getAdresseHotel() +" ne répond plus");
         } catch (ErreurParametreReservationExeption_Exception e) {
             System.out.println("Erreur reservation: " + e + " : Veuillez essayer une autre offre.");
 
