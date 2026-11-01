@@ -10,6 +10,7 @@ import org.example.depot.Offre;
 import org.example.pointAcces.arguments.ArgumentsReservation;
 import org.example.pointAcces.exception.AgenceInconueException;
 import org.example.pointAcces.arguments.ArgumentsRecherche;
+import org.example.pointAcces.exception.ErreurParametreReservationExeption;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,6 @@ public interface HotelPort {
 
     @WebMethod
     @WebResult(name = "idDemande")
-    Confirmation reserverOffre(@WebParam(name="argsReserve") ArgumentsReservation argsReserve) throws AgenceInconueException;
+    Confirmation reserverOffre(@WebParam(name="argsReserve") ArgumentsReservation argsReserve) throws ErreurParametreReservationExeption;
 
 }

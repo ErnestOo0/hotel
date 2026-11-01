@@ -6,6 +6,7 @@ import org.example.pointAcces.arguments.Expiration;
 import org.example.pointAcces.arguments.InfoBancaires;
 import org.example.pointAcces.exception.AgenceInconueException;
 import org.example.pointAcces.arguments.ArgumentsRecherche;
+import org.example.pointAcces.exception.ErreurParametreReservationExeption;
 
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -80,7 +81,7 @@ public class Logique {
         return duree*chambreHotel.getTarif().getPrix();
     }
 
-    public Confirmation reserver(ArgumentsReservation argsReserve, Hotel h)  throws AgenceInconueException {
+    public Confirmation reserver(ArgumentsReservation argsReserve, Hotel h)  throws ErreurParametreReservationExeption {
         //si on a la meme demande, onn indique qu'elle à deja été réservé
         Confirmation res = new Confirmation(argsReserve.getIdDemande());
         String refResa = h.getReservationByIdDemande(argsReserve.getIdDemande());
@@ -93,20 +94,20 @@ public class Logique {
         //verifier secret
         if(!h.authentificationAgence(argsReserve.getAgence())){
             //modifier l'erreur
-            throw new AgenceInconueException("Impossible d'authentifier l'agence");
+            throw new ErreurParametreReservationExeption("Impossible d'authentifier l'agence");
         }
         if(!infoBancairesValides(argsReserve.getInfoBancaires())){
             //modifier l'erreur
-            throw new AgenceInconueException("Info bancaire res invalides");
+            throw new ErreurParametreReservationExeption("Info bancaire res invalides");
         }
         //verifier existant
         if(!chambreValide(argsReserve, h)){
-            throw new AgenceInconueException("Chambre inconue");
+            throw new ErreurParametreReservationExeption("Chambre inconue");
         }
 
         //effectuer reservation, la verification de la validité se fait ici
         if(!reserverChambre(argsReserve, h)){
-            throw new AgenceInconueException("Chambre deja reservée");
+            throw new ErreurParametreReservationExeption("Chambre deja reservée");
         }
         //renvoyer reference
         refResa = makeRefResa(argsReserve);

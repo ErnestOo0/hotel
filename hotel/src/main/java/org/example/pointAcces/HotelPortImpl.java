@@ -9,6 +9,7 @@ import org.example.logiqueMetier.Logique;
 import org.example.pointAcces.arguments.ArgumentsReservation;
 import org.example.pointAcces.exception.AgenceInconueException;
 import org.example.pointAcces.arguments.ArgumentsRecherche;
+import org.example.pointAcces.exception.ErreurParametreReservationExeption;
 
 import java.util.ArrayList;
 
@@ -36,7 +37,7 @@ public class HotelPortImpl implements HotelPort {
     }
 
     @Override
-    public Confirmation reserverOffre(ArgumentsReservation argsReserve)  throws AgenceInconueException {
+    public Confirmation reserverOffre(ArgumentsReservation argsReserve)  throws ErreurParametreReservationExeption {
         return l.reserver(argsReserve, h);
     }
 }
