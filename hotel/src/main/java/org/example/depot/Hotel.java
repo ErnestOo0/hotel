@@ -105,7 +105,6 @@ public class Hotel {
     }
 
     public String getReservationByIdDemande(String idDemande){
-        System.out.println(idDemande+" : "+reservations.get(idDemande));
         return reservations.get(idDemande);
     }
 

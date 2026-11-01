@@ -115,6 +115,7 @@ public class Logique {
         refResa = makeRefResa(argsReserve);
         h.addReservation(argsReserve.getIdDemande(), refResa);
         res.setRefReservation(refResa);
+        System.out.println("nouvelle reservation :"+ res.getIdDemande() +" :"+h.getReservationByIdDemande(res.getIdDemande()));
         return res;
     }
 
