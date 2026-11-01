@@ -6,8 +6,6 @@ import org.example.depot.Chambre;
 import org.example.depot.Hotel;
 import org.example.depot.Tarif;
 import org.example.pointAcces.HotelPortImpl;
-import org.example.pointAcces.arguments.Agence;
-import org.example.pointAcces.recherche.RechercheOffreImpl;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.

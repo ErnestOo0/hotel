@@ -3,6 +3,7 @@ package org.example.depot;
 import org.example.pointAcces.arguments.Agence;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Hotel {
@@ -11,10 +12,12 @@ public class Hotel {
     private int etoiles;
     private ArrayList<Chambre> chambres;
     private ArrayList<AgenceSecret> agencesPartenaires;
+    private HashMap<String, String> reservations;
 
     public Hotel() {
         this.chambres = new ArrayList<>();
         this.agencesPartenaires = new ArrayList<>();
+        this.reservations = new HashMap<>();
     }
 
     public Hotel(String nom, String ville, int etoiles) {
@@ -23,6 +26,7 @@ public class Hotel {
         this.etoiles = etoiles;
         this.chambres = new ArrayList<>();
         this.agencesPartenaires = new ArrayList<>();
+        this.reservations = new HashMap<>();
     }
 
     public String getNom() {
@@ -92,5 +96,9 @@ public class Hotel {
             }
         }
         return false;
+    }
+
+    public void addReservation(String idDemande,String refReservation){
+        reservations.put(idDemande,refReservation);
     }
 }

@@ -4,12 +4,20 @@ import org.example.depot.Offre;
 import org.example.depot.Voyageur;
 
 public class ArgumentsReservation {
+    private String idDemande;
     private Agence agence;
     private Offre offre;
     private Voyageur voyageur;
     private InfoBancaires infoBancaires;
 
     public ArgumentsReservation() {}
+
+    public String getIdDemande() {
+        return idDemande;
+    }
+    public void setIdDemande(String idDemande) {
+        this.idDemande = idDemande;
+    }
 
     public Agence getAgence() {
         return agence;

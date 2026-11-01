@@ -94,8 +94,9 @@ public class Logique {
             throw new AgenceInconueException("Chambre deja reservée");
         }
         //renvoyer reference
-        makeRefResa(argsReserve);
-        return "";
+        String refResa = makeRefResa(argsReserve);
+        h.addReservation(argsReserve.getIdDemande(), refResa);
+        return refResa;
     }
 
     private boolean infoBancairesValides(InfoBancaires i){
@@ -132,9 +133,10 @@ public class Logique {
 
     private boolean reserverChambre(ArgumentsReservation argsReserve, Hotel h){
         Offre offreClient = argsReserve.getOffre();
+        String nomA = argsReserve.getAgence().getNomAgence();
         Voyageur v = argsReserve.getVoyageur();
         Chambre c =h.getChambreByNom(offreClient.getNomChambre());
-        Reservation r = new Reservation(v, offreClient.getDateArrivee(), offreClient.getDateRetour());
+        Reservation r = new Reservation(nomA,v, offreClient.getDateArrivee(), offreClient.getDateRetour());
         return c.newResa(r);
     }
 
@@ -143,7 +145,6 @@ public class Logique {
         res += argsReserve.getAgence().getNomAgence();
         res += argsReserve.getVoyageur().getNomVoyageur();
         res += argsReserve.getOffre().toString();
-
         return res;
     }
 }

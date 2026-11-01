@@ -1,6 +1,9 @@
 package org.example.depot;
 
+import org.example.pointAcces.arguments.Agence;
+
 public class Reservation {
+    private String nomAgence;
     private Voyageur client;
     private DateDecomposee dateArrivee;
     private DateDecomposee dateDepare;
@@ -12,10 +15,19 @@ public class Reservation {
         this.dateDepare = dateDepare;
     }
 
-    public Reservation(Voyageur client, DateDecomposee dateArrivee, DateDecomposee dateDepare) {
+    public Reservation(String nomAgence ,Voyageur client, DateDecomposee dateArrivee, DateDecomposee dateDepare) {
+        this.nomAgence = nomAgence;
         this.client = client;
         this.dateArrivee = dateArrivee;
         this.dateDepare = dateDepare;
+    }
+
+    public String getNomAgence() {
+        return nomAgence;
+    }
+
+    public void setNomAgence(String nomAgence) {
+        this.nomAgence = nomAgence;
     }
 
     public Voyageur getClient() {
