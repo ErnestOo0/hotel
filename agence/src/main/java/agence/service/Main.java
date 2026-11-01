@@ -71,8 +71,9 @@ public class Main {
             Voyageur voyageur = new Voyageur();
             String prenom = "Ernest";
             String nom = "Jouault";
-// voyageur.setPrenom(prenom); // selon vos setters disponibles
-// voyageur.setNom(nom);
+            voyageur.setNomVoyageur(nom);
+            voyageur.setPrenomVoyageur(prenom);
+
 
             String cvc = "620";
             String numero = "4202304242042923";
