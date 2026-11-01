@@ -34,7 +34,7 @@ public class Logique {
         for(Chambre chambreHotel : h.getChambres()){
             if(datesDispo(chambreHotel, argsRecherche)
                     && tarifCorrect(chambreHotel,argsRecherche)){
-                Offre newO = new Offre(h.getNom(), chambreHotel.getNom(), argsRecherche.getDateArrivee(), argsRecherche.getDateDepart(), prixSejour(chambreHotel, argsRecherche));
+                Offre newO = new Offre(h.getNom(), chambreHotel.getNom(), argsRecherche.getDateArrivee(), argsRecherche.getDateDepart(), prixSejour(chambreHotel, argsRecherche), h.getAdresseHotel());
                 res.add(newO);
             }
         }

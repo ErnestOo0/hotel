@@ -12,6 +12,8 @@ import org.example.pointAcces.HotelPortImpl;
 public class MainHotel {
     public static void main(String[] args) {
 
+        String adresse = args.length > 0 ? args[0] : "http://localhost:8080/hotel";
+
         AgenceSecret a1 = new AgenceSecret();
         String noma1 = "Agence_Ernest-xXx-Maxime_Agence";
         String secret = "12345";
@@ -21,7 +23,7 @@ public class MainHotel {
         String nh = "hotel du parc";
         String vh = "Montpellier";
         int neh = 3;
-        Hotel h = new Hotel(nh,vh,neh);
+        Hotel h = new Hotel(nh,vh,neh, adresse);
         h.addAgencesPartenaire(a1);
 
         Chambre c = new Chambre();
@@ -37,7 +39,6 @@ public class MainHotel {
         c.setTarif(t);
         h.addChambre(c);
 
-        String adresse = args.length > 0 ? args[0] : "http://localhost:8080/hotel";
         Endpoint.publish(adresse, new HotelPortImpl(h));
         System.out.println("Service publie  : " + adresse);
         System.out.println("Contrat WSDL    : " + adresse + "?wsdl");
