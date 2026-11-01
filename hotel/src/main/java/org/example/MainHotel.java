@@ -18,8 +18,10 @@ public class MainHotel {
         AgenceSecret a1 = new AgenceSecret();
         String noma1 = "Agence_Ernest-xXx-Maxime_Agence";
         String secret = "12345";
+        double coefTarif = 1.20;
         a1.setNomAgence(noma1);
         a1.setSecretAgence(secret);
+        a1.setCoefTarif(coefTarif);
 
         String nh = args[1];
         String vh = args[2];

@@ -5,12 +5,12 @@ public class Offre {
     private String nomChambre;
     private DateDecomposee dateArrivee;
     private DateDecomposee dateRetour;
-    private long prix;
+    private double prix;
     private String adresseHotel;
 
     public Offre() {}
 
-    public Offre(String nomHotel, String nomChambre, DateDecomposee dateArrivee, DateDecomposee dateRetour, long prix, String adresseHotel) {
+    public Offre(String nomHotel, String nomChambre, DateDecomposee dateArrivee, DateDecomposee dateRetour, double prix, String adresseHotel) {
         this.nomHotel = nomHotel;
         this.nomChambre = nomChambre;
         this.dateArrivee = dateArrivee;
@@ -55,10 +55,10 @@ public class Offre {
         return nomHotel+nomChambre+dateArrivee.toString()+dateRetour.toString();
     }
 
-    public long getPrix() {
+    public double getPrix() {
         return prix;
     }
-    public void setPrix(long prix) {
+    public void setPrix(double prix) {
         this.prix = prix;
     }
     public String getAdresseHotel() {

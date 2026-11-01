@@ -27,6 +27,7 @@ public class Logique {
             System.out.println("pas assez d'etoiles");
             return res;
         }
+
         if(!datesValides(argsRecherche)){
             System.out.println("dates invalides");
             return res;
@@ -74,11 +75,12 @@ public class Logique {
         return prixSejour(chambreHotel, args) <= prixMax;
     }
 
-    private long prixSejour(Chambre chambreHotel, ArgumentsRecherche args){
+    private double prixSejour(Chambre chambreHotel, ArgumentsRecherche args){
         DateDecomposee arrivee = args.getDateArrivee();
         DateDecomposee depart = args.getDateDepart();
+        double coefTarif = args.getAgence().getCoefTarif();
         long duree = ChronoUnit.DAYS.between(arrivee.toLocalDate(),depart.toLocalDate());
-        return duree*chambreHotel.getTarif().getPrix();
+        return duree*chambreHotel.getTarif().getPrix()*coefTarif;
     }
 
     public Confirmation reserver(ArgumentsReservation argsReserve, Hotel h)  throws ErreurParametreReservationExeption {

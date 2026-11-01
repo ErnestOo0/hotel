@@ -3,6 +3,7 @@ package org.example.pointAcces.arguments;
 public class Agence {
     private String nomAgence;
     private String secretAgence;
+    private double coefTarif;
 
     public Agence(){}
 
@@ -19,4 +20,14 @@ public class Agence {
     public void setSecretAgence(String secretAgence) {
         this.secretAgence = secretAgence;
     }
+
+
+    public double getCoefTarif() {
+        return coefTarif;
+    }
+
+    public void setCoefTarif(double coefTarif) {
+        this.coefTarif = coefTarif;
+    }
+
 }

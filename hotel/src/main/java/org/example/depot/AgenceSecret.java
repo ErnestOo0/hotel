@@ -5,6 +5,7 @@ import org.example.logiqueMetier.SecretHasher;
 public class AgenceSecret {
     private String nomAgence;
     private SecretHasher.Empreinte secretAgence;
+    private double coefTarif;
 
     public AgenceSecret(){}
 
@@ -21,4 +22,13 @@ public class AgenceSecret {
     public void setSecretAgence(String secretAgence) {
         this.secretAgence = SecretHasher.deriver(secretAgence.toCharArray());
     }
+
+    public double getCoefTarif() {
+        return coefTarif;
+    }
+
+    public void setCoefTarif(double coefTarif) {
+        this.coefTarif = coefTarif;
+    }
+
 }
