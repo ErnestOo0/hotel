@@ -115,17 +115,18 @@ public class Main {
 
 
                 ArgumentsReservation argumentsReservation2 = new ArgumentsReservation();
-                argumentsReservation.setAgence(a);
-                argumentsReservation.setIdDemande("2");
-                argumentsReservation.setInfoBancaires(infoBancairesClient);
-                argumentsReservation.setOffre(offreChoisie);
-                argumentsReservation.setVoyageur(voyageur);
+                argumentsReservation2.setAgence(a);
+                argumentsReservation2.setIdDemande("2");
+                argumentsReservation2.setInfoBancaires(infoBancairesClient);
+                argumentsReservation2.setOffre(offreChoisie);
+                argumentsReservation2.setVoyageur(voyageur);
 
-                Confirmation reponse2 = port.reserverOffre(argumentsReservation);
-
+                Confirmation reponse2 = port.reserverOffre(argumentsReservation2);
+                System.out.println("Id-demande : " + reponse2.getIdDemande());
+                System.out.println("Id-reservation : " + reponse2.getRefReservation());
 
                 try {
-                    Confirmation reponse = port.reserverOffre(argumentsReservation2);
+                    Confirmation reponse = port.reserverOffre(argumentsReservation);
 
                     if (reponse.isDejaReserve()) {
                         System.out.println("Vous avez déjà reservé cette offre.");
@@ -142,6 +143,7 @@ public class Main {
                     System.out.println("Erreur reservation: " + e + "Veuillez essayer une autre offre.");
 
                 }
+
 
                 scanner.close();
             }
