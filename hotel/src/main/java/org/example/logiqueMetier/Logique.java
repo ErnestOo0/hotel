@@ -84,7 +84,7 @@ public class Logique {
     }
 
     public Confirmation reserver(ArgumentsReservation argsReserve, Hotel h)  throws ErreurParametreReservationExeption {
-        //si on a la meme demande, onn indique qu'elle à deja été réservé
+        //si on a la meme demande, on indique qu'elle à deja été réservé
         Confirmation res = new Confirmation(argsReserve.getIdDemande());
         String refResa = h.getReservationByIdDemande(argsReserve.getIdDemande());
         if(refResa != null){

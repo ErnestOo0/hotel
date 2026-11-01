@@ -9,6 +9,7 @@ public class Main {
         Agence agence = new Agence();
         agence.setNomAgence("Agence_Ernest-xXx-Maxime_Agence");
         String secret = "12345";
+        agence.setSecretAgence(secret);
 
         AnnuaireHotels annuaire = args.length > 0 ? new AnnuaireHotels(List.of(args)) : new AnnuaireHotels();
 

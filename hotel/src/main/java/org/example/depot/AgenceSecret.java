@@ -17,6 +17,9 @@ public class AgenceSecret {
     }
 
     public boolean verifSecret(String secret){
+        if(secret == null){
+            return false;
+        }
         return SecretHasher.verifier(secret.toCharArray(), secretAgence);
     }
     public void setSecretAgence(String secretAgence) {

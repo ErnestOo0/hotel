@@ -33,7 +33,6 @@ public class AnnuaireHotels {
         return WSDLS;
     }
 
-    /** Retourne le proxy de cet hôtel, en le créant à la première demande. */
     public HotelPort port(String urlWsdl) throws MalformedURLException {
         HotelPort existant = proxys.get(urlWsdl);
         if (existant != null) {

@@ -92,6 +92,7 @@ public class Hotel {
     }
 
     public boolean authentificationAgence(Agence agence){
+        //System.out.println(agence.getNomAgence() + "veut s'authentifier avec le secret : "+agence.getSecretAgence());
         for(AgenceSecret a : agencesPartenaires){
             if(a.getNomAgence().equals(agence.getNomAgence()) && a.verifSecret(agence.getSecretAgence())){
                 return true;
