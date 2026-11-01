@@ -8,6 +8,13 @@ public class Offre {
 
     public Offre() {}
 
+    public Offre(String nomHotel, String nomChambre, DateDecomposee dateArrivee, DateDecomposee dateRetour) {
+        this.nomHotel = nomHotel;
+        this.nomChambre = nomChambre;
+        this.dateArrivee = dateArrivee;
+        this.dateRetour = dateRetour;
+    }
+
     public String getNomHotel() {
         return nomHotel;
     }

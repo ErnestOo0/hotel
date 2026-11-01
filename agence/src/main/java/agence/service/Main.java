@@ -9,8 +9,11 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         String nomAgence = "Agence_Ernest-xXx-Maxime_Agence";
-        RechercheOffreService service = new RechercheOffreService();
-        RechercheOffre port = service.getRechercheOffreSoapPort();
+        Agence a = new Agence();
+        a.setNomAgence(nomAgence);
+        a.setSecretAgence("12345");
+        HotelService service = new HotelService();
+        HotelPort port = service.getHotelSoapPort();
 
         DateDecomposee da = new DateDecomposee();
         da.setJour(2);
@@ -33,7 +36,7 @@ public class Main {
         try {
             ArgumentsRecherche argrr = new ArgumentsRecherche();
 
-            argrr.setAgence(nomAgence);
+            argrr.setAgence(a);
             argrr.setDateArrivee(da);
             argrr.setDateDepart(dd);
             argrr.setVille(v);
@@ -41,10 +44,10 @@ public class Main {
             argrr.setNbPersonnes(np);
             argrr.setPrixMax(pmax);
 
-            List<Chambre> lc = port.recherche(argrr);
+            List<Chambre> lc = port.rechercheOffre(argrr);
             System.out.println(lc.size()+" chambres répondent à la demande");
             for (Chambre c : lc) {
-                System.out.println("chambre n°"+c.getNumero()+" : "+c.getTarif().getPrix()+c.getTarif().getDevise());
+                System.out.println("chambre n°"+c.getNom()+" : "+c.getTarif().getPrix()+c.getTarif().getDevise());
             }
         }catch(AgenceInconueException_Exception e){
             System.out.println("Erreur "+ e.getMessage());

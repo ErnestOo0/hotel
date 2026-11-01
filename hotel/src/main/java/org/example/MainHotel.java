@@ -27,14 +27,14 @@ public class MainHotel {
         h.addAgencesPartenaire(a1);
 
         Chambre c = new Chambre();
-        int num = 1;
+        String nom = "1";
         int pl = 2;
         String nomT = "regulier";
         long p = 10;
         String d = "€";
         Tarif t = new Tarif(nomT,p,d);
 
-        c.setNumero(num);
+        c.setNom(nom);
         c.setPlaces(pl);
         c.setTarif(t);
         h.addChambre(c);

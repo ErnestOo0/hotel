@@ -12,12 +12,12 @@ import java.util.ArrayList;
 
 public class Logique {
 
-    public ArrayList<Chambre> offresDispo(ArgumentsRecherche argsRecherche, Hotel h) throws AgenceInconueException {
+    public ArrayList<Offre> offresDispo(ArgumentsRecherche argsRecherche, Hotel h) throws AgenceInconueException {
         if(!h.estAgencePartenaire(argsRecherche.getAgence())){
             throw new AgenceInconueException("l'agence \""+argsRecherche.getAgence()+"\" n'est pas partenaire");
         }
 
-        ArrayList<Chambre> res = new ArrayList<>();
+        ArrayList<Offre> res = new ArrayList<>();
         if(!bonneVille(argsRecherche, h)){
             System.out.println("mauvaise ville");
             return res;
@@ -33,7 +33,8 @@ public class Logique {
         for(Chambre chambreHotel : h.getChambres()){
             if(datesDispo(chambreHotel, argsRecherche)
                     && tarifCorrect(chambreHotel,argsRecherche)){
-                res.add(chambreHotel);
+                Offre newO = new Offre(h.getNom(), chambreHotel.getNom(), argsRecherche.getDateArrivee(), argsRecherche.getDateDepart());
+                res.add(newO);
             }
         }
         return res;

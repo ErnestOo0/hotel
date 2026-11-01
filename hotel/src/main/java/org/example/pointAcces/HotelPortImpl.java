@@ -3,6 +3,7 @@ package org.example.pointAcces;
 import jakarta.jws.WebService;
 import org.example.depot.Chambre;
 import org.example.depot.Hotel;
+import org.example.depot.Offre;
 import org.example.logiqueMetier.Logique;
 import org.example.pointAcces.arguments.ArgumentsReservation;
 import org.example.pointAcces.exception.AgenceInconueException;
@@ -29,7 +30,7 @@ public class HotelPortImpl implements HotelPort {
     }
 
     @Override
-    public ArrayList<Chambre> rechercheOffre(ArgumentsRecherche argsRecherche) throws AgenceInconueException {
+    public ArrayList<Offre> rechercheOffre(ArgumentsRecherche argsRecherche) throws AgenceInconueException {
         return l.offresDispo(argsRecherche, h);//utiliser fonction logique metier
     }
 

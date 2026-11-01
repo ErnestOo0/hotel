@@ -5,6 +5,7 @@ import jakarta.jws.WebParam;
 import jakarta.jws.WebResult;
 import jakarta.jws.WebService;
 import org.example.depot.Chambre;
+import org.example.depot.Offre;
 import org.example.pointAcces.arguments.ArgumentsReservation;
 import org.example.pointAcces.exception.AgenceInconueException;
 import org.example.pointAcces.arguments.ArgumentsRecherche;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public interface HotelPort {
     @WebMethod
     @WebResult(name = "listHotels")
-    ArrayList<Chambre> rechercheOffre(@WebParam(name="argsRecherche") ArgumentsRecherche argsRecherche) throws AgenceInconueException;
+    ArrayList<Offre> rechercheOffre(@WebParam(name="argsRecherche") ArgumentsRecherche argsRecherche) throws AgenceInconueException;
 
     @WebMethod
     @WebResult(name = "idDemande")
