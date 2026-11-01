@@ -5,6 +5,7 @@ import jakarta.jws.WebParam;
 import jakarta.jws.WebResult;
 import jakarta.jws.WebService;
 import org.example.depot.Chambre;
+import org.example.depot.Confirmation;
 import org.example.depot.Offre;
 import org.example.pointAcces.arguments.ArgumentsReservation;
 import org.example.pointAcces.exception.AgenceInconueException;
@@ -22,6 +23,6 @@ public interface HotelPort {
 
     @WebMethod
     @WebResult(name = "idDemande")
-    String reserverOffre(@WebParam(name="argsReserve") ArgumentsReservation argsReserve) throws AgenceInconueException;
+    Confirmation reserverOffre(@WebParam(name="argsReserve") ArgumentsReservation argsReserve) throws AgenceInconueException;
 
 }

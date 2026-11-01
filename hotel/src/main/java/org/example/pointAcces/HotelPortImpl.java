@@ -2,6 +2,7 @@ package org.example.pointAcces;
 
 import jakarta.jws.WebService;
 import org.example.depot.Chambre;
+import org.example.depot.Confirmation;
 import org.example.depot.Hotel;
 import org.example.depot.Offre;
 import org.example.logiqueMetier.Logique;
@@ -35,7 +36,7 @@ public class HotelPortImpl implements HotelPort {
     }
 
     @Override
-    public String reserverOffre(ArgumentsReservation argsReserve)  throws AgenceInconueException {
+    public Confirmation reserverOffre(ArgumentsReservation argsReserve)  throws AgenceInconueException {
         return l.reserver(argsReserve, h);
     }
 }

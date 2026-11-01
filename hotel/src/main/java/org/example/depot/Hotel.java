@@ -101,4 +101,12 @@ public class Hotel {
     public void addReservation(String idDemande,String refReservation){
         reservations.put(idDemande,refReservation);
     }
+
+    public String getReservationByIdDemande(String idDemande){
+        return reservations.get(idDemande);
+    }
+
+    public boolean dejaDemande(String idDemande){
+        return reservations.get(idDemande) != null;
+    }
 }

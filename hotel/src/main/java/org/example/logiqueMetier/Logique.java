@@ -80,7 +80,16 @@ public class Logique {
         return duree*chambreHotel.getTarif().getPrix();
     }
 
-    public String reserver(ArgumentsReservation argsReserve, Hotel h)  throws AgenceInconueException {
+    public Confirmation reserver(ArgumentsReservation argsReserve, Hotel h)  throws AgenceInconueException {
+        //si on a la meme demande, onn indique qu'elle à deja été réservé
+        Confirmation res = new Confirmation(argsReserve.getIdDemande());
+        String refResa = h.getReservationByIdDemande(argsReserve.getIdDemande());
+        if(refResa != null){
+            res.setDejaReserver(true);
+            res.setRefReservation(refResa);
+            return res;
+        }
+
         //verifier secret
         if(!h.authentificationAgence(argsReserve.getAgence())){
             //modifier l'erreur
@@ -94,14 +103,16 @@ public class Logique {
         if(!chambreValide(argsReserve, h)){
             throw new AgenceInconueException("Chambre inconue");
         }
+
         //effectuer reservation, la verification de la validité se fait ici
         if(!reserverChambre(argsReserve, h)){
             throw new AgenceInconueException("Chambre deja reservée");
         }
         //renvoyer reference
-        String refResa = makeRefResa(argsReserve);
+        refResa = makeRefResa(argsReserve);
         h.addReservation(argsReserve.getIdDemande(), refResa);
-        return refResa;
+        res.setRefReservation(refResa);
+        return res;
     }
 
     private boolean infoBancairesValides(InfoBancaires i){
