@@ -7,40 +7,83 @@ import org.example.depot.Hotel;
 import org.example.depot.Tarif;
 import org.example.pointAcces.HotelPortImpl;
 
+import java.util.Objects;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class MainHotel {
     public static void main(String[] args) {
 
         int port = Integer.parseInt(args[0]);
+        String nh = args[1];
+        String vh = args[2];
         String adresse = "http://localhost:"+port+"/hotel";
 
         AgenceSecret a1 = new AgenceSecret();
-        String noma1 = "Agence_Ernest-xXx-Maxime_Agence";
-        String secret = "12345";
-        double coefTarif = 1.20;
-        a1.setNomAgence(noma1);
-        a1.setSecretAgence(secret);
-        a1.setCoefTarif(coefTarif);
+        a1.setNomAgence("Agence_Ernest-xXx-Maxime_Agence");
+        a1.setSecretAgence("12345");
+        a1.setCoefTarif(1.20);
 
-        String nh = args[1];
-        String vh = args[2];
-        int neh = 3;
-        Hotel h = new Hotel(nh,vh,neh, adresse);
-        h.addAgencesPartenaire(a1);
+        AgenceSecret a2 = new AgenceSecret();
+        a2.setNomAgence("Agence_ErnestN");
+        a2.setSecretAgence("24012005");
+        a2.setCoefTarif(1.05);
 
-        Chambre c = new Chambre();
-        String nom = "1";
-        int pl = 2;
-        String nomT = "regulier";
-        long p = 10;
-        String d = "€";
-        Tarif t = new Tarif(nomT,p,d);
+        AgenceSecret a3 = new AgenceSecret();
+        a3.setNomAgence("Agence_MaximeJ");
+        a3.setSecretAgence("67676767");
+        a3.setCoefTarif(1.50);
 
-        c.setNom(nom);
-        c.setPlaces(pl);
-        c.setTarif(t);
-        h.addChambre(c);
+        Tarif t1 = new Tarif("regulier",10,"€");
+        Tarif t2 = new Tarif("regulier",20,"€");
+
+        Chambre c11 = new Chambre();
+        c11.setNom("petite1");
+        c11.setPlaces(2);
+        c11.setTarif(t1);
+
+        Chambre c12 = new Chambre();
+        c12.setNom("petite2");
+        c12.setPlaces(2);
+        c12.setTarif(t1);
+
+        Chambre c21 = new Chambre();
+        c21.setNom("grande1");
+        c21.setPlaces(4);
+        c21.setTarif(t2);
+
+        Chambre c22 = new Chambre();
+        c22.setNom("grande2");
+        c22.setPlaces(4);
+        c22.setTarif(t2);
+
+
+        Hotel h;
+        if(nh.equals("royal")){
+            h = new Hotel(nh, vh, 5, "1 rue de la ville");
+            h.addChambre(c11);
+            h.addChambre(c21);
+
+            h.addAgencesPartenaire(a1);
+            h.addAgencesPartenaire(a3);
+
+        } else if (nh.equals("ibis")) {
+            h = new Hotel(nh, vh, 2, "1 rue de la ville");
+            h.addChambre(c11);
+            h.addChambre(c12);
+            h.addAgencesPartenaire(a1);
+            h.addAgencesPartenaire(a2);
+            h.addAgencesPartenaire(a3);
+        }else{
+            h = new Hotel(nh, vh, 4, "1 rue de la ville");
+            h.addChambre(c11);
+            h.addChambre(c12);
+            h.addChambre(c21);
+            h.addChambre(c22);
+            h.addAgencesPartenaire(a1);
+            h.addAgencesPartenaire(a2);
+            h.addAgencesPartenaire(a3);
+        }
 
         Endpoint.publish(adresse, new HotelPortImpl(h));
         System.out.println("Service publie  : " + adresse);
