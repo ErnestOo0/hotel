@@ -60,7 +60,7 @@ public class MainHotel {
 
         Hotel h;
         if(nh.equals("royal")){
-            h = new Hotel(nh, vh, 5, "1 rue de la ville");
+            h = new Hotel(nh, vh, 5, adresse);
             h.addChambre(c11);
             h.addChambre(c21);
 
@@ -68,14 +68,14 @@ public class MainHotel {
             h.addAgencesPartenaire(a3);
 
         } else if (nh.equals("ibis")) {
-            h = new Hotel(nh, vh, 2, "1 rue de la ville");
+            h = new Hotel(nh, vh, 2, adresse);
             h.addChambre(c11);
             h.addChambre(c12);
             h.addAgencesPartenaire(a1);
             h.addAgencesPartenaire(a2);
             h.addAgencesPartenaire(a3);
         }else{
-            h = new Hotel(nh, vh, 4, "1 rue de la ville");
+            h = new Hotel(nh, vh, 4, adresse);
             h.addChambre(c11);
             h.addChambre(c12);
             h.addChambre(c21);
