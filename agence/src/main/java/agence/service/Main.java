@@ -4,8 +4,6 @@ import agence.client.hotel.*;
 
 import java.util.List;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
         String nomAgence = "Agence_Ernest-xXx-Maxime_Agence";
@@ -51,7 +49,6 @@ public class Main {
                 return;
             }
 
-// Affichage des offres avec leur indice
             int index = 0;
             for (Offre o : lo) {
                 System.out.println("----------------------------------------");
@@ -73,7 +70,6 @@ public class Main {
             String nom = "Jouault";
             voyageur.setNomVoyageur(nom);
             voyageur.setPrenomVoyageur(prenom);
-
 
             String cvc = "620";
             String numero = "4202304242042923";
@@ -114,24 +110,7 @@ public class Main {
                 argumentsReservation.setVoyageur(voyageur);
 
 
-                ArgumentsReservation argumentsReservation2 = new ArgumentsReservation();
-                argumentsReservation2.setAgence(a);
-                argumentsReservation2.setIdDemande("2");
-                argumentsReservation2.setInfoBancaires(infoBancairesClient);
-                argumentsReservation2.setOffre(offreChoisie);
-                argumentsReservation2.setVoyageur(voyageur);
-
-                try{
-                    Confirmation reponse2 = port.reserverOffre(argumentsReservation2);
-                    System.out.println("Id-demande : " + reponse2.getIdDemande());
-                    System.out.println("Id-reservation : " + reponse2.getRefReservation());
-                }catch (ErreurParametreReservationExeption_Exception e) {
-                    System.out.println("Erreur reservation: " + e + "Veuillez essayer une autre offre.");
-
-                }
-
                 try {
-
                     Confirmation reponse = port.reserverOffre(argumentsReservation);
 
                     if (reponse.isDejaReserve()) {
@@ -146,13 +125,14 @@ public class Main {
                     break;
 
                 } catch (ErreurParametreReservationExeption_Exception e) {
-                    System.out.println("Erreur reservation: " + e + "Veuillez essayer une autre offre.");
+                    System.out.println("Erreur reservation: " + e + " : Veuillez essayer une autre offre.");
 
                 }
 
-
-                scanner.close();
             }
+
+            scanner.close();
+
 
         } catch (AgenceInconueException_Exception e) {
             System.out.println("Erreur " + e.getMessage());
