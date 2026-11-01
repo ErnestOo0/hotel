@@ -49,17 +49,6 @@ public class Reservation {
 
     public boolean conflict(Reservation resa) {
 
-        /*//si l'arrivée pose probleme
-
-        if(dateArrivee.isApres(resa.getDateArrivee()) && dateArrivee.isAvant(resa.getDateDepare())) {
-            return true;
-        }
-        //si le depart pose probleme
-        if(dateDepare.isApres(resa.getDateArrivee()) && dateDepare.isAvant(resa.getDateDepare())){
-            return true;
-        }
-        return false;*/
-
         return dateArrivee.toLocalDate().isBefore(resa.getDateDepare().toLocalDate())
                 && resa.getDateArrivee().toLocalDate().isBefore(dateDepare.toLocalDate());
     }

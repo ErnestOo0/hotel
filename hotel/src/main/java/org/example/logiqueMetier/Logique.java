@@ -85,9 +85,7 @@ public class Logique {
         //si on a la meme demande, onn indique qu'elle à deja été réservé
         Confirmation res = new Confirmation(argsReserve.getIdDemande());
         String refResa = h.getReservationByIdDemande(argsReserve.getIdDemande());
-        System.out.println("nouvelle reservation");
         if(refResa != null){
-            System.out.println("reservation deja effectue");
             res.setDejaReserve(true);
             res.setRefReservation(refResa);
             return res;
@@ -95,17 +93,13 @@ public class Logique {
 
         //verifier secret
         if(!h.authentificationAgence(argsReserve.getAgence())){
-            System.out.println("secret invalide");
             //modifier l'erreur
             throw new ErreurParametreReservationExeption("Impossible d'authentifier l'agence");
         }
-        System.out.println("secret valide");
         if(!infoBancairesValides(argsReserve.getInfoBancaires())){
-            System.out.println("info bancaires invalide");
             //modifier l'erreur
-            throw new ErreurParametreReservationExeption("Info bancaire res invalides");
+            throw new ErreurParametreReservationExeption("Info bancaire invalides");
         }
-        System.out.println("info bancaires valide");
         //verifier existant
         if(!chambreValide(argsReserve, h)){
             throw new ErreurParametreReservationExeption("Chambre inconue");
@@ -113,15 +107,12 @@ public class Logique {
 
         //effectuer reservation, la verification de la validité se fait ici
         if(!reserverChambre(argsReserve, h)){
-            System.out.println("Chambre deja reservee");
             throw new ErreurParametreReservationExeption("Chambre deja reservée");
         }
-        System.out.println("Chambre peut etre reservee");
         //renvoyer reference
         refResa = makeRefResa(argsReserve);
         h.addReservation(argsReserve.getIdDemande(), refResa);
         res.setRefReservation(refResa);
-        System.out.println("Reservation terminee");
         return res;
     }
 
